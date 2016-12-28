@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     # custom users app
     'wifinder.users.apps.UsersConfig',
+    'wifinder.pois.apps.PoisConfig',
     # Your stuff: custom apps go here
 )
 

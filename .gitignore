@@ -73,3 +73,5 @@ wifinder/media/
 
 
 staticfiles/
+.~lock*#
+venv/
