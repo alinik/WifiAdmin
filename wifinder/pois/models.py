@@ -16,11 +16,11 @@ class Poi(models.Model):
         ('bh_installation_done', 'B.H.Installation.Done'),
         ('onair', 'On - Air'),
         ('switched_off', 'Switched Off'),
-        ('undefined', 'undefined'))
+        )
     TYPES = (('indoor', 'Indoor'), ('outdoor', 'Outdoor'))
 
     name = models.CharField(max_length=50)
-    status = models.CharField(max_length=50, choices=STATUS)
+    status = models.CharField(max_length=50, choices=STATUS,null=True,blank=True)
 
     country = models.ForeignKey(Country)
     city = models.ForeignKey(City)

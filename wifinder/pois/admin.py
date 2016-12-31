@@ -15,7 +15,7 @@ class PoiAdmin(admin.ModelAdmin):
         }),
         ('Location', {'fields': (('country', 'region', 'city'),
 
-                                 'poi_type', 'type', 'desc', 'location', 'address'), }),
+                                'type', 'desc', 'location', 'address'), }),
         ('Advanced options', {
             'classes': ('collapse',),
             'fields': ('rush_hours', 'floor', 'area', 'staff_count', 'avg_move_in_floor', 'days', 'fiber',
