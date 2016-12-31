@@ -9,20 +9,22 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  # url(r'^jet/', include('jet.urls', 'jet')),
+                  # url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
 
-    # Django Admin, use {% url 'admin:index' %}
-    url(settings.ADMIN_URL, admin.site.urls),
+                  url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+                  url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
-    # User management
-    url(r'^users/', include('wifinder.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+                  # Django Admin, use {% url 'admin:index' %}
+                  url(settings.ADMIN_URL, admin.site.urls),
 
-    # Your stuff: custom urls includes go here
+                  # User management
+                  url(r'^users/', include('wifinder.users.urls', namespace='users')),
+                  url(r'^accounts/', include('allauth.urls')),
 
+                  # Your stuff: custom urls includes go here
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

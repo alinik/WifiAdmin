@@ -6,4 +6,20 @@ from wifinder.pois.models import Poi
 
 @admin.register(Poi)
 class PoiAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'status')
+    fieldsets = (
+        ('Basic Info', {
+            'fields': ('status', 'name',
+                       ),
+            'classes': ('wide', 'extrapretty'),
+        }),
+        ('Location', {'fields': (('country', 'region', 'city'),
+
+                                 'poi_type', 'type', 'desc', 'location', 'address'), }),
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('rush_hours', 'floor', 'area', 'staff_count', 'avg_move_in_floor', 'days', 'fiber',
+                       'wifi', ('irancell', 'rightel', 'mci'), 'das_in_ibs', 'adsl', 'power', 'ac_type',
+                       'activity_duration', 'activity'),
+        }),
+    )

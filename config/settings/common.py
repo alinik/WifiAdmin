@@ -33,6 +33,9 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+    # 'jet.dashboard',
+    # 'jet',
+
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -40,6 +43,8 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'geoposition',
+    'cities_light',
 )
 
 # Apps specific for this project go here.
@@ -104,7 +109,6 @@ DATABASES = {
     'default': env.db('DATABASE_URL', default='postgres:///wifinder'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -202,7 +206,6 @@ ROOT_URLCONF = 'config.urls'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # PASSWORD VALIDATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 # ------------------------------------------------------------------------------
@@ -248,11 +251,17 @@ LOGIN_URL = 'account_login'
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # django-compressor
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ("compressor", )
-STATICFILES_FINDERS += ("compressor.finders.CompressorFinder", )
+INSTALLED_APPS += ("compressor",)
+STATICFILES_FINDERS += ("compressor.finders.CompressorFinder",)
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyCJnJk5_TFch5Mz2CZ0OUGfVNyL2K2HpbU'
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en', 'fa', 'ira', 'pes']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['IR']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR',
+                                   'PPLS', 'STLMT', ]
+
