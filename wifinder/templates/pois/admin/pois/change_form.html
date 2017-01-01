@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+
+<!--select2-id_city-container-->
+{% block after_related_objects %}
+    <script id="sync-city-with-country" type="text/javascript">
+        jQuery("select#id_city").on("select2:close", function (x) {
+            console.log(jQuery("select#id_city").val())
+        })
+    </script>
+    {{ block.super }}
+{% endblock %}

@@ -33,8 +33,8 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
-    # 'jet.dashboard',
-    # 'jet',
+    'jet.dashboard',
+    'jet',
 
     'django.contrib.admin',
 )
