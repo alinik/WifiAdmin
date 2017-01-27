@@ -8,11 +8,13 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+
 urlpatterns = [
                   url(r'^jet/', include('jet.urls', 'jet')),
                   url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
 
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+                  url(r'^pois/', include('wifinder.pois.urls'), name='data'),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
                   # Django Admin, use {% url 'admin:index' %}

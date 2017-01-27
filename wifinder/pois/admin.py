@@ -1,21 +1,22 @@
 from django.contrib import admin
 
 # Register your models here.
-from wifinder.pois.models import Poi
+from wifinder.pois.models import Poi, Status, AvailableField, DisplayRole
 
 
 @admin.register(Poi)
 class PoiAdmin(admin.ModelAdmin):
-    list_display = ('name', 'status')
+    list_display = ('name', 'status', 'city')
+    list_filter = ('status', 'type')
+    search_fields = ('name', 'city__alternate_names')
     fieldsets = (
         ('Basic Info', {
             'fields': ('status', 'name',
                        ),
             'classes': ('wide', 'extrapretty'),
         }),
-        ('Location', {'fields': (('country', 'region', 'city'),
-
-                                'type', 'desc', 'location', 'address'), }),
+        ('Location', {'fields': ('city',
+                                 'type', 'desc', 'location', 'address'), }),
         ('Advanced options', {
             'classes': ('collapse',),
             'fields': ('rush_hours', 'floor', 'area', 'staff_count', 'avg_move_in_floor', 'days', 'fiber',
@@ -23,3 +24,19 @@ class PoiAdmin(admin.ModelAdmin):
                        'activity_duration', 'activity'),
         }),
     )
+
+
+@admin.register(Status)
+class StatusAdmin(admin.ModelAdmin):
+    # fields = ('name', 'name_persian','color')
+    list_display = ('name', 'name_persian', 'display_color')
+
+
+@admin.register(AvailableField)
+class AvailableFieldAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(DisplayRole)
+class DisplayRoleAdmin(admin.ModelAdmin):
+    pass

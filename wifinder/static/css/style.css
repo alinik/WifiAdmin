@@ -6066,12 +6066,13 @@ a > img.fh5co-align-center {
 
 
 .gm-style-iw {
-       width: 160px !important;
-       top: 15px !important;
-       left: 0 !important;
-       background-color: #fff;
-       box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-       border: 1px solid rgba(195, 155, 211, 1);
-       border-radius: 2px 2px 15px 15px; // apply 10px to the bottom corners of the infowindow
+  width: 160px !important;
+  top: 15px !important;
+  left: 0 !important;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+  border: 1px solid rgba(195, 155, 211, 1);
+  border-radius: 2px 2px 15px 15px;
+/ / apply 10 px to the bottom corners of the infowindow
 
-
+}

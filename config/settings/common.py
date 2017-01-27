@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'geoposition',
     'cities_light',
+    'colorful',
 )
 
 # Apps specific for this project go here.

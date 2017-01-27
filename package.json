@@ -1,0 +1,25 @@
+{
+  "name": "wifi_admin",
+  "version": "1.0.0",
+  "description": "Wifinder ========",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinik/WifiAdmin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alinik/WifiAdmin/issues"
+  },
+  "homepage": "https://github.com/alinik/WifiAdmin#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
