@@ -13,8 +13,6 @@
 {% block javascript %}
     {{ block.super }}
     <script src="/pois/data.js"></script>
-    {% compress js %}
-        <script src="{% static 'js/main.js' %}"></script>
-    {% endcompress %}
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initialize"></script>
 {% endblock %}

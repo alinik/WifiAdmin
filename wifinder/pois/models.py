@@ -79,7 +79,7 @@ class AvailableField(models.Model):
 class DisplayRole(models.Model):
     name = models.CharField(max_length=100)
     fields = models.ManyToManyField(AvailableField)
-
+    statuses = models.ManyToManyField(Status)
     def __str__(self):
         return self.name
 
