@@ -8,7 +8,6 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-
 urlpatterns = [
                   url(r'^jet/', include('jet.urls', 'jet')),
                   url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
@@ -26,6 +25,8 @@ urlpatterns = [
                   # Your stuff: custom urls includes go here
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if 'django_uwsgi' in settings.INSTALLED_APPS:
+    urlpatterns += [url(r'^admin/uwsgi/', include('django_uwsgi.urls')), ]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

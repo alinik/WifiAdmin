@@ -6076,3 +6076,7 @@ a > img.fh5co-align-center {
 / / apply 10 px to the bottom corners of the infowindow
 
 }
+
+div#divMapInfo > p {
+  margin-bottom: 0;
+}

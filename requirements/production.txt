@@ -7,7 +7,7 @@
 # WSGI Handler
 # ------------------------------------------------
 gevent==1.2a2
-gunicorn==19.6.0
+django_uwsgi
 
 # Static and Media Storage
 # ------------------------------------------------
@@ -22,5 +22,4 @@ django-anymail==0.6.1
 # Raven is the Sentry client
 # --------------------------
 raven==5.32.0
-
 
