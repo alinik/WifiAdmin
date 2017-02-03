@@ -8,6 +8,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from wifinder.pois.views import data_js, data_json, get_version
+
 urlpatterns = [
                   url(r'^jet/', include('jet.urls', 'jet')),
                   url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
@@ -15,6 +17,9 @@ urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
                   url(r'^pois/', include('wifinder.pois.urls'), name='data'),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  url(r'^js/data.js$', data_js, name='data.js'),
+                  url(r'^js/data.json$', data_json, name='data.json'),
+                  url(r'^version.json$', get_version, name='data.json'),
 
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, admin.site.urls),

@@ -52,3 +52,5 @@ django-jet
 django-colorful
 django-geoposition
 django-cities-light
+django-sequences
+

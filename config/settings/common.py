@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
     'geoposition',
     'cities_light',
     'colorful',
+    'sequences.apps.SequencesConfig',
 )
 
 # Apps specific for this project go here.

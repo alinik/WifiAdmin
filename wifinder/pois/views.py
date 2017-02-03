@@ -1,9 +1,13 @@
 import json
+
+import sequences
 from collections import defaultdict
 
 from django.db.models import Count
 from django.http import HttpResponse
 from django.http import JsonResponse
+from sequences import get_next_value
+from sequences.models import Sequence
 
 from wifinder.pois.models import Poi, AvailableField, DisplayRole
 
@@ -60,7 +64,6 @@ def data(request):
     info = ''
     for poi in pois:
         for field in fields:
-
             info += '<p>%s:%s</p>' % (field.name, str(poi.__getattribute__(field.name)))
 
         item = {'name': poi.name,
@@ -73,3 +76,8 @@ def data(request):
                 }
         result['detail'].append(item)
     return result
+
+
+def get_version(request):
+    version = Sequence.objects.get(name='version').last
+    return JsonResponse({"version": version, "path": "/js/data.json"})

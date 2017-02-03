@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import sequences
 from cities_light.models import Country, City, Region
 from colorfield.fields import ColorField
 from colorful.fields import RGBColorField
@@ -68,6 +69,11 @@ class Poi(models.Model):
         """Poi.objects.values('city__region__name').annotate(c=Count('city__region__name'))"""
         return self.city.region
 
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        """Increase version based on updating poi"""
+        sequences.get_next_value('version')
+        return super(Poi, self).save(force_insert, force_update, using, update_fields)
+
 
 class AvailableField(models.Model):
     name = models.CharField(max_length=100)
@@ -80,6 +86,6 @@ class DisplayRole(models.Model):
     name = models.CharField(max_length=100)
     fields = models.ManyToManyField(AvailableField)
     statuses = models.ManyToManyField(Status)
+
     def __str__(self):
         return self.name
-
