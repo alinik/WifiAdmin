@@ -26,7 +26,7 @@ var status_mapping = {
     'S.A Done': icon_nak.yellow,                //yellow
     'A.P.Installation.Done': icon_nak.purple,   //purple
     'B.H.Installation.Done': icon_nak.blue,     //blue
-    'On - Air': icon_nak.green,                 //green
+    'فعال': icon_nak.green,                 //green
     'Switched Off': icon_nak.white,             //white
     'undefined': icons.red
 };
@@ -87,7 +87,7 @@ function setMarkers(map) {
             marker = new google.maps.Marker({
                 position: {lat: data.coord[0], lng: data.coord[1]},
                 title: data.name,
-                icon: status_mapping[data.status] || icons.red,
+                icon: status_mapping[data.status] || icons.red
             });
             document.markers[zoom_draw[zoom]][index]._marker = marker
 
@@ -105,15 +105,15 @@ function setMarkers(map) {
         data._infoWindow = new google.maps.InfoWindow({content: contents});
         marker.addListener('click', function () {
             if (openInfo) openInfo.close();
-
+            debugger;
             data._infoWindow.open(map, marker);
             openInfo = data._infoWindow;
             divMapInfo.innerHTML = data.info;
 
             // classie.toggle( menuRight, 'cbp-spmenu-open' );
-            if (button != 'showRight') {
-                classie.toggle(showRight, 'disabled');
-            }
+            // if (button != 'showRight') {
+            //     classie.toggle(showRight, 'disabled');
+            // }
         });
 
         // Event that closes the Info Window with a click on the map
@@ -173,34 +173,6 @@ function initialize() {
         new google.maps.LatLng(39.777222, 63.317459));
     var mapMinZoom = 5;
     var mapMaxZoom = 22;
-    var opts = {
-        streetViewControl: false,
-        // scrollwheel: false,
-        tilt: 0,
-        mapTypeId: 'tiles',
-        mapTypeControl: false,
-        zoom: 10,
-        center: new google.maps.LatLng(35.7211, 51.3995)
-    };
-    var imageMapType = new google.maps.ImageMapType({
-        getTileUrl: function (coord, zoom) {
-            var proj = map.getProjection();
-            var z2 = Math.pow(2, zoom);
-            var tileXSize = 256 / z2;
-            var tileYSize = 256 / z2;
-            var tileBounds = new google.maps.LatLngBounds(
-                proj.fromPointToLatLng(new google.maps.Point(coord.x * tileXSize, (coord.y + 1) * tileYSize)),
-                proj.fromPointToLatLng(new google.maps.Point((coord.x + 1) * tileXSize, coord.y * tileYSize))
-            );
-            // if (!mapBounds.intersects(tileBounds) || zoom < mapMinZoom || zoom > mapMaxZoom) return null;
-            return tileUrl.replace('{z}', zoom).replace('{x}', coord.x).replace('{y}', coord.y);
-        },
-        tileSize: new google.maps.Size(256, 256),
-        minZoom: mapMinZoom,
-        maxZoom: mapMaxZoom,
-        name: 'Tiles'
-    });
-
 // // Google only
 //        var mapProp = {
 //            center: new google.maps.LatLng(35.7211, 51.3995),
@@ -210,13 +182,35 @@ function initialize() {
 //        var map = new google.maps.Map(document.getElementById("map"), mapProp);
 // // End Google only
 // OSM Map
+
+    var opts = {
+        streetViewControl: false,
+        // scrollwheel: false,
+        tilt: 0,
+        mapTypeId: 'tiles',
+        mapTypeControl: false,
+        zoom: 11,
+        center: new google.maps.LatLng(35.7211, 51.3995)
+    };
+    var imageMapType = new google.maps.ImageMapType({
+        getTileUrl: function (coord, zoom) {
+            return tileUrl.replace('{z}', zoom).replace('{x}', coord.x).replace('{y}', coord.y);
+        },
+        tileSize: new google.maps.Size(256, 256),
+        minZoom: mapMinZoom,
+        maxZoom: mapMaxZoom,
+        name: 'Tiles'
+    });
+
+
     var map = new google.maps.Map(document.getElementById("map"), opts);
     map.mapTypes.set('tiles', imageMapType);
 // End OSM Map
     map.fitBounds(mapBounds);
-    setMarkers(map, mapMinZoom);
+    setMarkers(map);
     map.addListener('zoom_changed', function () {
         setMarkers(map);
     });
+    resize();
 }
 

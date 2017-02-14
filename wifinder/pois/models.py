@@ -30,11 +30,11 @@ class Status(models.Model):
 class Poi(models.Model):
     TYPES = (('indoor', 'Indoor'), ('outdoor', 'Outdoor'))
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
     status = models.ForeignKey(Status)
 
     city = models.ForeignKey(City)
-    type = models.CharField(max_length=30, choices=TYPES, null=True, blank=True)
+    type = models.CharField(max_length=800, choices=TYPES, null=True, blank=True)
     desc = models.CharField(max_length=200, null=True, blank=True)
     location = GeopositionField()
     address = models.CharField(max_length=200, null=True, blank=True)

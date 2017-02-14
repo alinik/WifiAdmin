@@ -46,7 +46,7 @@
     {#    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/default.css' %}"/>#}
     {#    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/component.css' %}"/>#}
 </head>
-<body>
+<body onresize="resize()">
 
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -96,7 +96,13 @@
     {% compress js %}
         {#        <script src="{% static 'js/project.js' %}"></script>#}
     {% endcompress %}
+    <script>
+        function resize() {
+            $('#map').height(window.innerHeight - 100);
+            google.maps.event.trigger(map, 'resize')
 
+        }
+    </script>
 {% endblock javascript %}
 </body>
 </html>
