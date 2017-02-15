@@ -13,12 +13,12 @@ var icons = {
 };
 
 var icon_nak = {
-    gray: 'img/pin_gray.png',
-    yellow: 'img/pin_yellow.png',
-    purple: 'img/pin_pink.png',
-    blue: 'img/pin_turquoise_blue.png',
-    green: 'img/pin_light_green.png',
-    white: 'img/pin_white.png'
+    gray: '/static/img/pin_gray.png',
+    yellow: '/static/img/pin_yellow.png',
+    purple: '/static/img/pin_pink.png',
+    blue: '/static/img/pin_turquoise_blue.png',
+    green: '/static/img/pin_light_green.png',
+    white: '/static/img/pin_white.png'
 };
 
 var status_mapping = {
@@ -26,7 +26,7 @@ var status_mapping = {
     'S.A Done': icon_nak.yellow,                //yellow
     'A.P.Installation.Done': icon_nak.purple,   //purple
     'B.H.Installation.Done': icon_nak.blue,     //blue
-    'فعال': icon_nak.green,                 //green
+    'On - Air': icon_nak.green,                 //green
     'Switched Off': icon_nak.white,             //white
     'undefined': icons.red
 };
@@ -47,6 +47,7 @@ var tileUrl = "http://5.160.202.6:2020/osm/{z}/{x}/{y}.png";
 
 var /** {Array<google.maps.Marker>} **/ allMarkers = [];
 function setMarkers(map) {
+    if (!document.markers) return;
     var zoom = map.getZoom();
     var zoom_draw = {
         0: 'country',
@@ -105,11 +106,10 @@ function setMarkers(map) {
         data._infoWindow = new google.maps.InfoWindow({content: contents});
         marker.addListener('click', function () {
             if (openInfo) openInfo.close();
-            debugger;
             data._infoWindow.open(map, marker);
             openInfo = data._infoWindow;
-            divMapInfo.innerHTML = data.info;
-
+            divMapInfo.innerHTML = data.info || "-";
+            divPOITitle.innerHTML ="<h5>"+ data.name+"</h5>";
             // classie.toggle( menuRight, 'cbp-spmenu-open' );
             // if (button != 'showRight') {
             //     classie.toggle(showRight, 'disabled');
@@ -118,6 +118,9 @@ function setMarkers(map) {
 
         // Event that closes the Info Window with a click on the map
         google.maps.event.addListener(map, 'click', function () {
+            data._infoWindow.close();
+        });
+        google.maps.event.addListener(map, 'zoom_change', function () {
             data._infoWindow.close();
         });
 
@@ -207,7 +210,11 @@ function initialize() {
     map.mapTypes.set('tiles', imageMapType);
 // End OSM Map
     map.fitBounds(mapBounds);
-    setMarkers(map);
+    $.get('/pois/data.json', function (response, error) {
+        document.markers = response;
+        setMarkers(map, mapMinZoom);
+    });
+
     map.addListener('zoom_changed', function () {
         setMarkers(map);
     });

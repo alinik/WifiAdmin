@@ -61,13 +61,14 @@ def data(request):
     """
     user = request.user or 'guest'
     fields = DisplayRole.objects.first().fields.all()
-    info = ''
     for poi in pois:
+        info = ''
+
         for field in fields:
-            info += '<p>%s:%s</p>' % (field.name, str(poi.__getattribute__(field.name)))
+            info += '<p>%s:%s</p>' % (field.title or field.name, str(poi.__getattribute__(field.name) or '-'))
 
         item = {'name': poi.name,
-                'status': poi.status.name_persian,
+                'status': poi.status.name,
                 'province': poi.region.name,
                 'country': poi.country.name,
                 'coord': [float(poi.location.latitude), float(poi.location.longitude)],
@@ -75,6 +76,7 @@ def data(request):
                 'info': info
                 }
         result['detail'].append(item)
+
     return result
 
 

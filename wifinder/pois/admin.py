@@ -32,9 +32,10 @@ class StatusAdmin(admin.ModelAdmin):
     list_display = ('name', 'name_persian', 'display_color')
 
 
-# @admin.register(AvailableField)
-# class AvailableFieldAdmin(admin.ModelAdmin):
-#     pass
+@admin.register(AvailableField)
+class AvailableFieldAdmin(admin.ModelAdmin):
+    list_display = ('name','title')
+    list_editable = ('title',)
 
 
 @admin.register(DisplayRole)
