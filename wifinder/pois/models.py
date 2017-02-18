@@ -59,6 +59,9 @@ class Poi(models.Model):
     activity_duration = models.CharField(max_length=100, null=True, blank=True)
     activity = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
     @property
     def country(self):
         """Poi.objects.values('city__country__name').annotate(c=Count('city__country__name'))"""

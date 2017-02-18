@@ -7,6 +7,7 @@ from wifinder.pois.models import Poi, Status, AvailableField, DisplayRole
 @admin.register(Poi)
 class PoiAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'city')
+    list_editable = ('status',)
     list_filter = ('status', 'type')
     search_fields = ('name', 'city__alternate_names')
     fieldsets = (

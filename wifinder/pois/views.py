@@ -16,30 +16,39 @@ def data_json(request):
     return JsonResponse(data(request))
 
 
-def data_js(request):
-    valid_json = json.dumps(data(request))
-    return HttpResponse('document.markers=' + valid_json + ';', content_type='text/javascript')
-
-
 def data(request):
     pois = Poi.objects.all()
     province_flat = Poi.objects.values('city__region__name', 'status__name', 'city__latitude',
                                        'city__longitude').annotate(c=Count('city__region__name'))
     province = defaultdict(dict)
     for item in province_flat:
+        if 'Total' not in province[item['city__region__name']]:
+            province[item['city__region__name']]['Total'] = 0
+        province[item['city__region__name']]['Total'] += item['c']
         province[item['city__region__name']][item['status__name']] = item['c']
         if 'coord' not in province[item['city__region__name']]:
             province[item['city__region__name']]['coord'] = [float(item['city__latitude']),
                                                              float(item['city__longitude'])]
+    for item in province:
+        info = '<br/>'.join(['%s:%s' % (x, y) for (x, y) in province[item].items() if x not in ['name', 'coord']])
+        province[item]['info'] = '<div dir="rtl">' + info+'</div>'
+
     province_list = [dict({'name': key}, **province[key]) for key in province]
     country_flat = Poi.objects.values('city__country__name', 'status__name', 'city__latitude',
                                       'city__longitude').annotate(c=Count('city__country__name'))
     country = defaultdict(dict)
     for item in country_flat:
+        if 'Total' not in country[item['city__country__name']]:
+            country[item['city__country__name']]['Total'] = 0
+        country[item['city__country__name']]['Total'] += item['c']
         country[item['city__country__name']][item['status__name']] = item['c']
         if 'coord' not in country[item['city__country__name']]:
             country[item['city__country__name']]['coord'] = [float(item['city__latitude']),
                                                              float(item['city__longitude'])]
+    for item in country:
+        info = '<br/>'.join(['%s:%s' % (x, y) for (x, y) in country[item].items() if x not in ['name', 'coord']])
+        country[item]['info'] = '<div dir="rtl">' + info+'</div>'
+
     country_list = [dict({'name': key}, **country[key]) for key in country]
     result = {
         "detail": [],
