@@ -13,12 +13,12 @@ var icons = {
 };
 
 var icon_nak = {
-    gray:   'img/pin_gray.png',
-    yellow: 'img/pin_yellow.png',
-    purple: 'img/pin_pink.png',
-    blue:   'img/pin_turquoise_blue.png',
-    green:  'img/pin_light_green.png',
-    white:  'img/pin_white.png'
+    gray: '/static/img/pin_gray.png',
+    yellow: '/static/img/pin_yellow.png',
+    purple: '/static/img/pin_pink.png',
+    blue: '/static/img/pin_turquoise_blue.png',
+    green: '/static/img/pin_light_green.png',
+    white: '/static/img/pin_white.png'
 };
 
 var status_mapping = {
@@ -29,22 +29,23 @@ var status_mapping = {
     'On - Air': icon_nak.green,                 //green
     'Switched Off': icon_nak.white,             //white
     'undefined': icons.red
-}
+};
 
 var status_color = {
-    'Nominal': "#d7dbdd",                       //gray
-    'S.A Done': "#fdfec7",                      //yellow
-    'A.P.Installation.Done': "#e8daef",         //purple
-    'B.H.Installation.Done': "#d1f2eb",         //blue
-    'On - Air': "#2ecc71",                      //green
-    'Switched Off': "#fdfefe"                   //white
-}
+        'Nominal': "#d7dbdd",                       //gray
+        'S.A Done': "#fdfec7",                      //yellow
+        'A.P.Installation.Done': "#e8daef",         //purple
+        'B.H.Installation.Done': "#d1f2eb",         //blue
+        'On - Air': "#2ecc71",                      //green
+        'Switched Off': "#fdfefe"                   //white
+    }
 
-;
+    ;
 // var tileUrl = "http://172.26.80.111/osm/{z}/{x}/{y}.png";
 var tileUrl = "http://5.160.202.6:2020/osm/{z}/{x}/{y}.png";
 var allMarkers = [];
 function setMarkers(map) {
+    if (!document.markers) return;
     var zoom = map.getZoom();
     var zoom_draw = {
         0: 'country',
@@ -92,12 +93,12 @@ function setMarkers(map) {
         }
 
         var contents = '<div id="iw-container">' +
-                       '<div class="iw-title">NAK Wifinder</div>' +
-                       '<div class="iw-content">' +
-                       '<p><h5>'+ data.name +'</h5></p>' +
-                       '</div>' +
-                       '<div class="iw-bottom-gradient"></div>' +
-                       '</div>';
+            '<div class="iw-title">NAK Wifinder</div>' +
+            '<div class="iw-content">' +
+            '<p><h5>' + data.name + '</h5></p>' +
+            '</div>' +
+            '<div class="iw-bottom-gradient"></div>' +
+            '</div>';
 
         // data._infoWindow = new google.maps.InfoWindow({content: data.name});
         data._infoWindow = new google.maps.InfoWindow({content: contents});
@@ -108,51 +109,51 @@ function setMarkers(map) {
             openInfo = data._infoWindow;
             divMapInfo.innerHTML = data.info;
 
-	        // classie.toggle( menuRight, 'cbp-spmenu-open' );
-            if( button !== 'showRight' ) {
-				classie.toggle( showRight, 'disabled' );
-			}
+            // classie.toggle( menuRight, 'cbp-spmenu-open' );
+            if (button !== 'showRight') {
+                classie.toggle(showRight, 'disabled');
+            }
         });
 
         // Event that closes the Info Window with a click on the map
-      google.maps.event.addListener(map, 'click', function() {
-        data._infoWindow.close();
-      });
-
-       // for prepare style
-       google.maps.event.addListener(data._infoWindow, 'domready', function() {
-
-       // ============================================================
-       // Reference to the DIV which receives the contents of the infowindow using jQuery
-       var iwOuter = $('.gm-style-iw');
-       var iwBackground = iwOuter.prev();
-
-       // Remove the background shadow DIV
-       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-
-       // Remove the white background DIV
-       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
-
-       // ============================================================
-       var iwCloseBtn = iwOuter.next();
-
-        // Apply the desired effect to the close button
-        iwCloseBtn.css({
-              opacity: '0.6', // by default the close button has an opacity of 0.7
-              right: '58px', top: '21px', // button repositioning
-              'border-radius': '2px', // circular effect
-              'box-shadow': '0 0 5px #c39bd3' // 3D effect to highlight the button
-          });
-
-        iwCloseBtn.mouseout(function(){
-          $(this).css({opacity: '1'});
+        google.maps.event.addListener(map, 'click', function () {
+            data._infoWindow.close();
         });
 
-        iwCloseBtn.mouseover(function(){
-          $(this).css({opacity: '0.6'});
+        // for prepare style
+        google.maps.event.addListener(data._infoWindow, 'domready', function () {
+
+            // ============================================================
+            // Reference to the DIV which receives the contents of the infowindow using jQuery
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+
+            // Remove the background shadow DIV
+            iwBackground.children(':nth-child(2)').css({'display': 'none'});
+
+            // Remove the white background DIV
+            iwBackground.children(':nth-child(4)').css({'display': 'none'});
+
+
+            // ============================================================
+            var iwCloseBtn = iwOuter.next();
+
+            // Apply the desired effect to the close button
+            iwCloseBtn.css({
+                opacity: '0.6', // by default the close button has an opacity of 0.7
+                right: '58px', top: '21px', // button repositioning
+                'border-radius': '2px', // circular effect
+                'box-shadow': '0 0 5px #c39bd3' // 3D effect to highlight the button
+            });
+
+            iwCloseBtn.mouseout(function () {
+                $(this).css({opacity: '1'});
+            });
+
+            iwCloseBtn.mouseover(function () {
+                $(this).css({opacity: '0.6'});
+            });
         });
-});
 
         marker.setMap(map);
         allMarkers.push(marker);
