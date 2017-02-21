@@ -212,6 +212,11 @@ function initialize() {
     map.mapTypes.set('tiles', imageMapType);
 // End OSM Map
     map.fitBounds(mapBounds);
+
+    $.get('/pois/data.json', function (response, error) {
+        document.markers = response;
+        setMarkers(map, mapMinZoom);
+    });
     setMarkers(map, mapMinZoom);
     map.addListener('zoom_changed', function () {
         setMarkers(map);

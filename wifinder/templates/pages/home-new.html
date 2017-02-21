@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% load staticfiles i18n compress %}
+{% block content %}
+    <div class="row">
+
+        <div id="map" style="min-height:535px;" class="col-sm-10"></div>
+        <div class="divInfo col-sm-2" style="direction: rtl">
+            <div id="divPOITitle">N/A</div>
+            <div id="divMapInfo">N/A</div>
+        </div>
+
+
+    </div>
+{% endblock content %}
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initialize"></script>
+{% endblock %}
