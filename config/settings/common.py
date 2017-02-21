@@ -263,7 +263,7 @@ ADMIN_URL = r'^admin/'
 # ------------------------------------------------------------------------------
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyCJnJk5_TFch5Mz2CZ0OUGfVNyL2K2HpbU'
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en', 'fa', 'ira', 'pes']
-CITIES_LIGHT_INCLUDE_COUNTRIES = ['IR']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['IR','IQ']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR',
                                    'PPLS', 'STLMT', ]
 

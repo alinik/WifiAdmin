@@ -10,7 +10,10 @@ from sequences import get_next_value
 from sequences.models import Sequence
 
 from wifinder.pois.models import Poi, AvailableField, DisplayRole
-
+CAPITAL={
+    'Iran':[35.69439,51.42151],
+    'Iraq':[33.34058,44.40088]
+}
 
 def data_json(request):
     return JsonResponse(data(request))
@@ -43,8 +46,9 @@ def data(request):
         country[item['city__country__name']]['Total'] += item['c']
         country[item['city__country__name']][item['status__name']] = item['c']
         if 'coord' not in country[item['city__country__name']]:
-            country[item['city__country__name']]['coord'] = [float(item['city__latitude']),
-                                                             float(item['city__longitude'])]
+            country[item['city__country__name']]['coord'] = CAPITAL[item['city__country__name']]
+            # country[item['city__country__name']]['coord'] = [float(item['city__latitude']),
+            #                                                  float(item['city__longitude'])]
     for item in country:
         info = '<br/>'.join(['%s:%s' % (x, y) for (x, y) in country[item].items() if x not in ['name', 'coord']])
         country[item]['info'] = '<div dir="rtl">' + info+'</div>'
