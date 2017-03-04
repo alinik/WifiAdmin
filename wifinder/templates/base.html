@@ -1,15 +1,15 @@
 {% load staticfiles i18n compress %}<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}Wifinder{% endblock title %}</title>
+    <title>NAK: World-Class Telecom Managed Services</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Find Wifi offloading for MCI"/>
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO"/>
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
     <meta property="og:url" content=""/>
@@ -20,21 +20,12 @@
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
     <link rel="shortcut icon" href="{% static 'img/wifi.png' %}">
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-        {% compress css %}
-            {#            <link href="{% static 'css/project.css' %}" rel="stylesheet">#}
-        {% endcompress %}
-
-    {% endblock %}
-    {##}
-    {#    <link rel="stylesheet" href="{% static 'css/animate.css' %}">#}
-    {#    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">#}
-    {#    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">#}
-    {#    <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>#}
-    {#    <!--[if lt IE 9]> <script src="{% static 'js/vendor/respond.min.js'%}"></script> <![endif]-->#}
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
+    <!--[if lt IE 9]><script src="{% static 'js/vendor/respond.min.js' %}"></script><![endif]-->
 
     <style>
         @font-face {
@@ -43,66 +34,60 @@
         }
     </style>
 
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/default.css' %}"/>#}
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/component.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/default.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'SlidePushMenus/css/component.css' %}"/>
+    <!--<script src="SlidePushMenus/js/modernizr.custom.js"></script>-->
+
+
 </head>
-<body onresize="resize()">
+<body>
+
+<header id="fh5co-header" role="banner">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!-- Mobile Toggle Menu Button -->
+                <a href="#" class="{% static 'js-fh5co-nav-toggle fh5co-nav-toggle' %}" data-toggle="collapse"
+                   data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+
+                <i style="float: left"><img src="{% static 'img/logo.png' %}" width="60px"/></i>
+                <a class="navbar-brand" href="#">NAK WiFinder</a>
+
+            </div>
+            <div id="fh5co-navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/"><span>Home <span class="border"></span></span></a></li>
+                    <li><a href="{% url 'admin:index' %}"><span>Admin <span class="border"></span></span></a></li>
+                    <li><a href="{% url 'account_login' %}"><span>Login <span class="border"></span></span></a></li>
+                    <li><a href="/static/app/WifinderAval.apk"><img src="/static/img/android-6-xl.png" width="24"
+                                                                    title="wififinder android app"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+{% block content %}{% endblock %}
+
+<footer id="fh5co-footer">
     <div class="container">
-        <div class="navbar-header">
-            <!-- Mobile Toggle Menu Button -->
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
-               data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-
-            <i style="float: left"><img src="{% static 'img/logo.png' %}" width="60px"/></i>
-            <a class="navbar-brand" href="#">NAK WiFinder</a>
-
+        <div>
+            <div>
+                <p>
+                    <small>&copy; 2016 All Rights Reserved. Designed by: <a href="http://nak-mci.ir/" target="_blank">NAK</a>
+                        | Images by: <a href="#" target="_blank">WIFinder NAK</a></small>
+                </p>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/"><span>Home <span class="border"></span></span></a></li>
-                <li><a href="{% url 'admin:index' %}"><span>Admin <span class="border"></span></span></a></li>
-                <li><a href="{% url 'account_login' %}"><span>Login <span class="border"></span></span></a></li>
-                <li><a href="#"><img src="{% static 'img/android-6-xl.png' %}" width="24"
-                                     title="wififinder android app"/></a></li>
-                <li><a href="#"><img src="{% static 'img/apple-xl.png' %}" width="24" title="wififinder apple app"/></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--END .header -->
-
-<div class="container-fluid" style="padding-top:60px;">
-
-    {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
-    {% endblock content %}
-</div>
-<footer id="fh5co-footer" class="footer">
-    <div class="container text-center">
-        <p>
-            <small>&copy; 2016 All Rights Reserved. Designed by: <a href="http://nak-mci.ir" target="_blank">NAK</a>
-            </small>
-        </p>
     </div>
 </footer>
+<script src="{% static 'js/vendor/jquery.min.js' %}"></script>
 {% block javascript %}
-    <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
-{#    <script src="{% static 'js/vendor/jquery.easing.1.3.js' %}"></script>#}
-    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    {% compress js %}
-        {#        <script src="{% static 'js/project.js' %}"></script>#}
-    {% endcompress %}
-    <script>
-        function resize() {
-            $('#map').height(window.innerHeight - 100);
-            google.maps.event.trigger(map, 'resize')
-
-        }
-    </script>
-{% endblock javascript %}
+    <script src="{% static 'js/vendor/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.magnific-popup.min.js' %}"></script>
+{% endblock %}
 </body>
 </html>
