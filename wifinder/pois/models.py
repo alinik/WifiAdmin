@@ -4,12 +4,14 @@ import sequences
 from cities_light.models import Country, City, Region
 from colorfield.fields import ColorField
 from colorful.fields import RGBColorField
+from django.contrib.auth.models import Group
 from django.db import models
 # Create your models here.
 from django.utils.encoding import python_2_unicode_compatible
 from geoposition.fields import GeopositionField
 
 
+@python_2_unicode_compatible
 class Status(models.Model):
     name = models.CharField(max_length=50)
     name_persian = models.CharField(max_length=100)
@@ -77,18 +79,17 @@ class Poi(models.Model):
         sequences.get_next_value('version')
         return super(Poi, self).save(force_insert, force_update, using, update_fields)
 
-
+@python_2_unicode_compatible
 class AvailableField(models.Model):
     name = models.CharField(max_length=100)
     title = models.CharField(max_length=150,blank=True,default='')
     def __str__(self):
         return self.name
 
-
+@python_2_unicode_compatible
 class DisplayRole(models.Model):
     name = models.CharField(max_length=100)
     fields = models.ManyToManyField(AvailableField)
     statuses = models.ManyToManyField(Status)
-
     def __str__(self):
         return self.name

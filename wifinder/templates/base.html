@@ -2,7 +2,8 @@
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,8 +60,8 @@
                     <li class="active"><a href="/"><span>Home <span class="border"></span></span></a></li>
                     <li><a href="{% url 'admin:index' %}"><span>Admin <span class="border"></span></span></a></li>
                     <li><a href="{% url 'account_login' %}"><span>Login <span class="border"></span></span></a></li>
-                    <li><a href="/static/app/WifinderAval.apk"><img src="/static/img/android-6-xl.png" width="24"
-                                                                    title="wififinder android app"/></a></li>
+                    <li><a href="{% static 'app/WifinderAval.apk' %}">
+                        <img src="{% static 'img/android-6-xl.png' %}" width="24" title="wififinder android app"/></a></li>
                 </ul>
             </div>
         </div>
@@ -74,6 +75,7 @@
     <div class="container">
         <div>
             <div>
+
                 <p>
                     <small>&copy; 2016 All Rights Reserved. Designed by: <a href="http://nak-mci.ir/" target="_blank">NAK</a>
                         | Images by: <a href="#" target="_blank">WIFinder NAK</a></small>

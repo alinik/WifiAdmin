@@ -10,10 +10,12 @@ from sequences import get_next_value
 from sequences.models import Sequence
 
 from wifinder.pois.models import Poi, AvailableField, DisplayRole
-CAPITAL={
-    'Iran':[35.69439,51.42151],
-    'Iraq':[33.34058,44.40088]
+
+CAPITAL = {
+    'Iran': [35.69439, 51.42151],
+    'Iraq': [33.34058, 44.40088]
 }
+
 
 def data_json(request):
     return JsonResponse(data(request))
@@ -34,7 +36,7 @@ def data(request):
                                                              float(item['city__longitude'])]
     for item in province:
         info = '<br/>'.join(['%s:%s' % (x, y) for (x, y) in province[item].items() if x not in ['name', 'coord']])
-        province[item]['info'] = '<div dir="rtl">' + info+'</div>'
+        province[item]['info'] = '<div dir="rtl">' + info + '</div>'
 
     province_list = [dict({'name': key}, **province[key]) for key in province]
     country_flat = Poi.objects.values('city__country__name', 'status__name', 'city__latitude',
@@ -51,7 +53,7 @@ def data(request):
             #                                                  float(item['city__longitude'])]
     for item in country:
         info = '<br/>'.join(['%s:%s' % (x, y) for (x, y) in country[item].items() if x not in ['name', 'coord']])
-        country[item]['info'] = '<div dir="rtl">' + info+'</div>'
+        country[item]['info'] = '<div dir="rtl">' + info + '</div>'
 
     country_list = [dict({'name': key}, **country[key]) for key in country]
     result = {
@@ -72,8 +74,11 @@ def data(request):
         ],
         "3G": []
     """
-    user = request.user or 'guest'
-    fields = DisplayRole.objects.first().fields.all()
+    user = 'guest'
+    if request.user.is_authenticated:
+        fields = request.user.display_role.fields.all()
+    else:
+        fields = DisplayRole.objects.get(name='Normal User').fields.all()
     for poi in pois:
         info = ''
 
